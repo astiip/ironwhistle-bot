@@ -90,8 +90,20 @@ export function createWorld(random) {
     trainId: 0,
   };
 
+  // Floating feedback text, kept readable: a new floater that would land on
+  // top of a live one (same column, less than one line apart) is moved one
+  // lane up (32px). Floaters all rise at the same speed, so a lane gap never
+  // closes. Deterministic: depends only on the live floaters. Visual only;
+  // game logic never reads floaters.
   function addFloater(x, y, text, colour, size) {
-    state.floaters.push({ x, y, text, colour: colour ?? '#ffffff', size: size ?? 20, life: 1.6, maxLife: 1.6 });
+    const s = size ?? 20;
+    let yy = y;
+    for (let lane = 0; lane < 4; lane += 1) {
+      const clash = state.floaters.some((f) => Math.abs(f.x - x) < 90 && Math.abs(f.y - yy) < 30);
+      if (!clash) break;
+      yy -= 32;
+    }
+    state.floaters.push({ x, y: yy, text, colour: colour ?? '#ffffff', size: s, life: 1.6, maxLife: 1.6 });
     if (state.floaters.length > 24) state.floaters.shift();
   }
 

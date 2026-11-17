@@ -100,10 +100,16 @@ export function stageShot(name, world) {
     state.bestChain = 8;
     state.score = Math.max(state.score, 2480);
     state.heat = Math.max(state.heat, 72);
+    // Clear the sim's chatter first: the autopilot's own delivery floaters
+    // sit on this same train, so the two staged lines would pile onto them
+    // (that is the overlap seen on the first cover). The lines sit at -80
+    // and -116: above the loco's destination flag (which spans -52..-34)
+    // and its on-time ring (-62), in clear field above the train.
+    state.floaters = [];
     if (state.trains.length > 0) {
       const pos = trainPosition(world.track, state.trains[0]);
-      state.floaters.push({ x: pos.x, y: pos.y - 30, text: 'ON TIME! +120', colour: '#1f8f3a', size: 22, life: 1.6, maxLife: 1.6 });
-      state.floaters.push({ x: pos.x, y: pos.y - 58, text: 'PERFECT ROUTE x8', colour: '#ff8c1a', size: 20, life: 1.6, maxLife: 1.6 });
+      state.floaters.push({ x: pos.x, y: pos.y - 80, text: 'ON TIME! +120', colour: '#1f8f3a', size: 22, life: 1.6, maxLife: 1.6 });
+      state.floaters.push({ x: pos.x, y: pos.y - 116, text: 'PERFECT ROUTE x8', colour: '#ff8c1a', size: 20, life: 1.6, maxLife: 1.6 });
     }
     return { screen: state.over ? (state.won ? SCREEN_WIN : SCREEN_OVER) : SCREEN_PLAY, best: state.score };
   }
