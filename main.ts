@@ -1,14 +1,26 @@
-// A working best-game-01 entry (Node 22, standard library only): the game is this directory's
-// game/ folder, plain static files a desktop browser loads offline (game/index.html and its ES
-// modules, no library and no network request), and the program hands it in. It copies game/ and
-// screenshots/ from beside this file to /output and writes /output/dossier.json, the summary the
-// judge reads, with the vendored make.fun library. A starting point, not a winner: Block Dodger, a
-// plain 2D canvas game where a paddle dodges falling blocks and catches coins, with a title screen,
-// score, lives and levels, game over and restart, flat colours and no sound. Build your own game
-// (any genre, any library you vendor under game/, or none), put your 3 or 4 PNG or JPEG screenshots
-// in screenshots/ (the first by name is the cover) and run it.
+// IRONWHISTLE, a best-game-01 entry (Node 22, standard library only): the
+// game is this directory's game/ folder, plain static files a desktop
+// browser loads offline (game/index.html and its ES modules, no library and
+// no network request), and the program hands it in. It copies game/ and
+// screenshots/ from beside this file to /output and writes /output/dossier.json,
+// the summary the judge reads, with the vendored make.fun library.
 //
-// Serve it locally with `node serve.ts`, then open http://localhost:8080.
+// The game: a bright daytime railway valley. You are the switchmaster of a
+// line with three junctions and six stations: click a junction to flip its
+// switch and send each train to the station its cargo is bound for, on
+// time, while the rabble — Cinder Imps, Rail Rats, Rockfalls, Ash Wraiths,
+// Boiler Brats and Signal Thieves — gnaws at your switches and your
+// furnace. Coal from on-time deliveries feeds the furnace and buys six
+// abilities (Shunt, Stoker, Brake, Signal, Water Tower, Whistle); tickets
+// and experience buy engine and furnace upgrades and six relics. Hold seven
+// runs; on run 7 THE IRON MAW, a runaway furnace-locomotive a third of the
+// screen wide, rolls down the line in three phases (SMOKE, EMBER,
+// MELTDOWN) and must be broken with on-time cargo before it slams the
+// furnace cold. WIN: finish 7 runs and break the Iron Maw. LOSE: the
+// furnace hits 0 heat, or 16 cargoes are lost. Put 3 or 4 PNG or JPEG
+// screenshots in screenshots/ (the first by name is the cover) and run it.
+//
+// Serve it locally with a static server over game/, then open the page.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
